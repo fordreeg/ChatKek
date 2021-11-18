@@ -1,5 +1,5 @@
 import io from 'socket.io-client';
 
-const Socket = () => io('http://localhost:8888')
+const Socket = () => io()
 
 export default Socket;
