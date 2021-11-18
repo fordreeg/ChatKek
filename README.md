@@ -18,10 +18,11 @@ Open [http://localhost:8888](http://localhost:8888) to view it in the browser.
 ## Get started
 To enter the chat room, you need to enter the room ID and nickname, if a chat with such an ID does not exist, a new chat with the current ID will be created.
 
-To test the functionality of the application, open the react application in several tabs and join the room you created
+To test the functionality of the application, open the react application ([http://localhost:3000](http://localhost:3000)) in several tabs and join the room you created
 
 
-###Stack:
+### Stack:
+####
 ![React](https://img.shields.io/badge/React-black?style=flat&logo=react)
 ![JS](https://img.shields.io/badge/JavaScript-black?style=flat&logo=javaScript)
 ![HTML](https://img.shields.io/badge/HTML-black?style=flat&logo=HTML5)
