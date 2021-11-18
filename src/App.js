@@ -1,5 +1,6 @@
 import './App.css';
 import io from 'socket.io-client';
+import Join from "./Components/Join/Join";
 
 function App() {
     const connectSocket = () => {
@@ -7,11 +8,7 @@ function App() {
     }
   return (
     <div className="App">
-        <div>
-            <input type="text" placeholder='Room ID' value=''/>
-            <input type="text" placeholder='Ваше имя' value=''/>
-            <button onClick={connectSocket}>Войти</button>
-        </div>
+        <Join/>
     </div>
   );
 }
