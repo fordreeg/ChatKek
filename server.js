@@ -1,17 +1,22 @@
 const express = require('express'),
-    app = express();
+    app = express(),
+    useSocket = require('socket.io'),
+    server = require('http').Server(app),
+    io = useSocket(server);
 
-const rooms = {
-    'rooms': [],
-    messages: ['hello']
-}
+const rooms = new Map([
+
+]);
+
 app.get('/rooms', (request, res) => {
     res.json(rooms)
 });
 
+io.on('connection', socket => {
+    console.log('socket connected', socket)
+})
 
-
-app.listen(9999, (err) => {
+server.listen(8888, (err) => {
     if (err) {
         throw Error(err);
     }
