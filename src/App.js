@@ -3,6 +3,7 @@ import Join from "./Components/Join/Join";
 import socket from "./Socket/Socket";
 import {useEffect, useReducer} from "react";
 import reducer from './Reducer/Reducer'
+import Chat from "./Components/Chat/Chat";
 
 function App() {
     const [state, dispatch] = useReducer(reducer, {
@@ -26,7 +27,7 @@ function App() {
     
   return (
     <div className="App">
-        {!state.joined && <Join onLogin={onLogin}/>}
+        {!state.joined ? <Join onLogin={onLogin}/> : <Chat/> }
     </div>
   );
 }
