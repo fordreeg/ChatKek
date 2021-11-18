@@ -1,20 +1,23 @@
 import React, {useState} from 'react';
-import Socket from "../../Socket/Socket";
 import axios from "axios";
 
-
-const Join = () => {
+const Join = ({onLogin}) => {
     const [roomId, setRoomId] = useState('');
     const [userName, setUserName] = useState('');
+    const [isLoading, setLoading] = useState(false);
     
-    const onEnter = () => {
+    
+    const onEnter = async () => {
         if (!roomId || !userName) {
             alert('no')
         } else {
-            axios.post('/rooms', {
+            const obj = {
                 roomId,
                 userName,
-            });
+            }
+            setLoading(true);
+            await axios.post('/rooms', obj);
+            onLogin(obj);
         }
     }
     return (
@@ -25,7 +28,7 @@ const Join = () => {
             <input type="text" placeholder='Ваше имя' value={userName}
                    onChange={(e) => {setUserName(e.target.value)}}
             />
-            <button onClick={onEnter}>Войти</button>
+            <button onClick={onEnter} disabled={isLoading}>{isLoading ? 'Вход...' : 'Войти'}</button>
         </div>
     );
 };

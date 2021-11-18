@@ -27,10 +27,14 @@ app.post('/rooms', (req, res) => {
     res.send(rooms);
 });
 
-
-
 io.on('connection', (socket) => {
-    console.log('socket connected', socket.id)
+    socket.on('ROOM:JOIN', (data) => {
+        socket.join(data.roomId); /*connect to room*/
+        rooms.get(data.roomId).get('users').set(socket.id, data.userName); /*added current users to this room*/
+        const users = [...rooms.get(data.roomId).get('users').values()]; /*get list all users*/
+        socket.broadcast.to(data.roomId).emit('ROOM:JOINED', users) /*sending message all users except myself in this room about connection new users*/
+    })
+    console.log('user connection', socket.id)
 })
 
 server.listen(8888, (err) => {
