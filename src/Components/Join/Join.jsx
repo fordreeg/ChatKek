@@ -21,14 +21,17 @@ const Join = ({onLogin}) => {
         }
     }
     return (
-        <div>
+        <div className="join-block">
             <input type="text" placeholder='Room ID' value={roomId}
                    onChange={(e) => {setRoomId(e.target.value)}}
             />
             <input type="text" placeholder='Ваше имя' value={userName}
                    onChange={(e) => {setUserName(e.target.value)}}
             />
-            <button onClick={onEnter} disabled={isLoading}>{isLoading ? 'Вход...' : 'Войти'}</button>
+            <button onClick={onEnter} disabled={isLoading}
+                    className="btn btn-success">
+                {isLoading ? 'Вход...' : 'Войти'}
+            </button>
         </div>
     );
 };

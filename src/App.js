@@ -47,7 +47,7 @@ function App() {
     }, []);
     
     return (
-        <div className="App">
+        <div className="wrapper">
             {!state.joined ? <Join onLogin={onLogin}/> : <Chat {...state} onAddMessage={addMessage}/>}
         </div>
     );

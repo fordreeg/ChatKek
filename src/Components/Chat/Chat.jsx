@@ -23,36 +23,39 @@ const Chat = ({users, messages, userName, roomId, onAddMessage}) => {
     }, [messages]);
     
     return (
-        <div style={{display: 'flex', height: '200px'}}>
-            <div style={{width: '150px', border: '1px solid red'}}>
-                <div>Room: {roomId}</div>
+        <div className="chat">
+            <div className="chat-users">
+                Room: <b>{roomId}</b>
                 <hr/>
-                <div>Online: {users.length}</div>
-                <div>Users:</div>
-                <div>{users.map((user, index) => <div key={index+1}>{user}</div>)}</div>
-                
+                <b>Online: {users.length}</b>
+                <ul>
+                    {users.map((user, index) => (
+                        <li key={index + 1}>{user}</li>
+                    ))}
+                </ul>
             </div>
-            <div style={{border: '1px solid red',}}>
-                <div >
-                    <div style={{marginBottom: '20px'}} ref={messagesRef}>
-                        {messages.map((message, index) => {
-                            return (
-                                <div key={index+1}>
-                                    <div>{message.text}</div>
-                                    <div>{message.userName}</div>
-                                    <hr/>
-                                </div>
-                            )
-                        })}
-                    </div>
+            <div className="chat-messages">
+                <div className="messages" ref={messagesRef}>
+                    {messages.map((message, index) => (
+                        <div className="message" key={index + 1}>
+                            <p>{message.text}</p>
+                            <div>
+                                <span>{message.userName}</span>
+                            </div>
+                        </div>
+                    ))}
                 </div>
-                <div>
-                    <div>
-                        <textarea name="message" placeholder='Enter new message'
-                                  value={valueTextarea} required onChange={(e) => {setValueTextarea(e.target.value)}}/> <br/>
-                        <button onClick={onSendMessage} disabled={valueTextarea === ''}>Send</button>
-                    </div>
-                </div>
+                <form>
+                    <textarea name="message" placeholder='Enter new message'
+                              className="form-control" style={{resize: 'none'}}
+                              value={valueTextarea} required onChange={(e) => {
+                        setValueTextarea(e.target.value)
+                    }}/>
+                    <button onClick={onSendMessage} disabled={valueTextarea === ''}
+                            type="button" className="btn btn-primary">
+                        Send
+                    </button>
+                </form>
             </div>
         </div>
     );
