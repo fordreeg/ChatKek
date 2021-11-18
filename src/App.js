@@ -7,7 +7,11 @@ function App() {
     }
   return (
     <div className="App">
-      <button onClick={connectSocket}>Connect socket</button>
+        <div>
+            <input type="text" placeholder='Room ID' value=''/>
+            <input type="text" placeholder='Ваше имя' value=''/>
+            <button onClick={connectSocket}>Войти</button>
+        </div>
     </div>
   );
 }
