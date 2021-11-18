@@ -1,4 +1,6 @@
 import React from 'react';
+import Socket from "../../Socket/Socket";
+
 
 const Join = () => {
     return (
