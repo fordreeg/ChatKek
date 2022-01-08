@@ -1,11 +1,11 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 
-const Join = ({onLogin}) => {
+const Join = ({ onLogin }) => {
   const [roomId, setRoomId] = useState('')
   const [userName, setUserName] = useState('')
   const [isLoading, setLoading] = useState(false)
-  
+
   const onEnter = async () => {
     if (!roomId || !userName) {
       alert('no')

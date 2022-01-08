@@ -2,7 +2,7 @@ const express = require('express'),
   app = express(),
   http = require('http'),
   server = http.createServer(app),
-  {Server} = require('socket.io'),
+  { Server } = require('socket.io'),
   io = new Server(server, {
     cors: {
       origin: '*',
@@ -13,18 +13,18 @@ app.use(express.json())
 const rooms = new Map()
 
 app.get('/rooms/:id', (req, res) => {
-  const {id: roomId} = req.params
+  const { id: roomId } = req.params
   const obj = rooms.has(roomId)
     ? {
-      users: [...rooms.get(roomId).get('users').values()],
-      messages: [...rooms.get(roomId).get('messages').values()],
-    }
-    : {users: [], messages: []}
+        users: [...rooms.get(roomId).get('users').values()],
+        messages: [...rooms.get(roomId).get('messages').values()],
+      }
+    : { users: [], messages: [] }
   res.json(obj)
 })
 
 app.post('/rooms', (req, res) => {
-  const {roomId} = req.body
+  const { roomId } = req.body
   if (!rooms.has(roomId)) {
     rooms.set(
       roomId,
@@ -54,8 +54,8 @@ io.on('connection', (socket) => {
         users
       ) /*sending message all users except myself in this room about connection new users*/
   })
-  
-  socket.on('ROOM:NEW_MESSAGE', ({userName, roomId, text}) => {
+
+  socket.on('ROOM:NEW_MESSAGE', ({ userName, roomId, text }) => {
     const obj = {
       userName,
       text,
@@ -68,7 +68,7 @@ io.on('connection', (socket) => {
         obj
       ) /*sending message all users except myself in this room about connection new users*/
   })
-  
+
   socket.on('disconnect', () => {
     rooms.forEach((value, roomId) => {
       if (value.get('users').delete(socket.id)) {

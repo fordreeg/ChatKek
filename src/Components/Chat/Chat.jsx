@@ -1,10 +1,10 @@
-import React, {useEffect, useRef, useState} from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import socket from '../../Socket/Socket'
 
-const Chat = ({users, messages, userName, roomId, onAddMessage}) => {
+const Chat = ({ users, messages, userName, roomId, onAddMessage }) => {
   const [valueTextarea, setValueTextarea] = useState('')
   const messagesRef = useRef(null)
-  
+
   const onSendMessage = () => {
     socket.emit('ROOM:NEW_MESSAGE', {
       userName,
@@ -17,16 +17,16 @@ const Chat = ({users, messages, userName, roomId, onAddMessage}) => {
     })
     setValueTextarea('')
   }
-  
+
   useEffect(() => {
     messagesRef.current.scrollTo(0, 99999999)
   }, [messages])
-  
+
   return (
     <div className='chat'>
       <div className='chat-users'>
         Room: <b>{roomId}</b>
-        <hr/>
+        <hr />
         <b>Online: {users.length}</b>
         <ul>
           {users.map((user, index) => (
@@ -50,7 +50,7 @@ const Chat = ({users, messages, userName, roomId, onAddMessage}) => {
             name='message'
             placeholder='Enter new message'
             className='form-control'
-            style={{resize: 'none'}}
+            style={{ resize: 'none' }}
             value={valueTextarea}
             required
             onChange={(e) => {
